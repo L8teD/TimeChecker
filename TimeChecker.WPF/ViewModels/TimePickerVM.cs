@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using TimeChecker.WPF.ViewModels.Commands;
 
@@ -10,15 +6,15 @@ namespace TimeChecker.WPF.ViewModels
 {
     public class TimePickerVM : ViewModelBase
     {
-        private DateTime? _date;
+        private DateTime? _time;
 
-        public DateTime? Date
+        public DateTime? Time
         {
-            get => _date;
+            get => _time;
             set
             {
-                _date = value;
-                OnPropertyChanged(nameof(Date));
+                _time = value;
+                OnPropertyChanged(nameof(Time));
             }
         }
 
@@ -26,14 +22,13 @@ namespace TimeChecker.WPF.ViewModels
 
         public TimePickerVM()
         {
-            _date = DateTime.Now;
-
+            _time = DateTime.Now;
             TimeChangedCommand = new TimeChangedCommand(OnTimeChanged);
         }
 
         private void OnTimeChanged(DateTime time)
         {
-            Date = time;
+            Time = time;
         }
     }
 }

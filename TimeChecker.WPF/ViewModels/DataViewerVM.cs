@@ -1,12 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace TimeChecker.WPF.ViewModels
 {
-    internal class DataViewerVM
+    public class DataViewerVM
     {
+        public ObservableCollection<ViewItem> DataItems { get; set; }
+
+        public DataViewerVM()
+        {
+            DataItems = new ObservableCollection<ViewItem>();
+
+            DataItems.Add(new ViewItem(DateTime.Now.AddDays(0)));
+            DataItems.Add(new ViewItem(DateTime.Now.AddDays(1)));
+            DataItems.Add(new ViewItem(DateTime.Now.AddDays(2)));
+        }
     }
 }

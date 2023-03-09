@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TimeChecker.WPF.ViewModels.Commands
 {
@@ -17,8 +13,9 @@ namespace TimeChecker.WPF.ViewModels.Commands
 
         public override void Execute(object parameter)
         {
-            if(parameter.GetType() == typeof(DateTime))
-                OnChanged?.Invoke((DateTime)parameter);
+            MaterialDesignThemes.Wpf.TimeChangedEventArgs args = parameter as MaterialDesignThemes.Wpf.TimeChangedEventArgs;
+            if (args != null)
+                OnChanged?.Invoke(args.NewTime);
         }
     }
 }

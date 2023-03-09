@@ -3,16 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TimeChecker.WPF.Views"
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:viewhelp="clr-namespace:TimeChecker.WPF.Views.ViewHelpers"
              xmlns:vm="clr-namespace:TimeChecker.WPF.ViewModels"
-             d:DataContext="{d:DesignInstance Type=vm:ViewItem, IsDesignTimeCreatable=False}"
+             d:DataContext="{d:DesignInstance Type=vm:TimePickerVM, IsDesignTimeCreatable=False}"
              mc:Ignorable="d">
     
     <materialDesign:DialogHost DialogTheme="Inherit" Identifier="RootDialog">
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{Binding Time, StringFormat=t}"
+            <TextBlock Text="{viewhelp:CultureAwareBinding Path=Time, StringFormat=t}"
                        VerticalAlignment="Center"
                        FontSize="24" />
             <Button Margin="8 0 0 0"
@@ -24,13 +24,14 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <materialDesign:Clock DisplayAutomation="ToSeconds" x:Name="Clock" >
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="TimeChanged">
-                                    <i:InvokeCommandAction Command="{Binding TimeChangedCommand}" 
-                                                           CommandParameter="{Binding ElementName=Clock, Path=Time}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
+                        <materialDesign:Clock DisplayAutomation="ToMinutesOnly" x:Name="Clock"
+                                              Is24Hours="True"
+                                              Style="{StaticResource MaterialDesignClockHorizontal}" >
+                            <hc:Interaction.Triggers>
+                                <hc:EventTrigger EventName="TimeChanged">
+                                    <hc:EventToCommand Command="{Binding TimeChangedCommand}" PassEventArgsToCommand="True"/>
+                                </hc:EventTrigger>
+                            </hc:Interaction.Triggers>
                         </materialDesign:Clock>
                         <StackPanel Grid.Row="1"
                                     Margin="8"

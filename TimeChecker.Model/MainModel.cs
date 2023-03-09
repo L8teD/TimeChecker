@@ -2,7 +2,6 @@
 {
     public class MainModel
     {
-        List<int> list;
         
     }
 }

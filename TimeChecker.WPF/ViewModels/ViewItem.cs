@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TimeChecker.WPF.ViewModels
 {
     public class ViewItem : ViewModelBase
     {
-        private string _date;
-        public string Date
+        private DateTime _date;
+        public DateTime Date
         {
-            get=>_date;
+            get => _date;
             set
             {
                 _date = value;
@@ -40,6 +36,13 @@ namespace TimeChecker.WPF.ViewModels
                 _pickerOut = value;
                 OnPropertyChanged(nameof(PickerOut));
             }
+        }
+
+        public ViewItem(DateTime date)
+        {
+            _date = date;
+            PickerIn = new TimePickerVM();
+            PickerOut = new TimePickerVM();
         }
     }
 }
