@@ -14,14 +14,15 @@
         Title="MainWindow" Height="450" Width="800">
 
     <Grid>
-        
-        <!--<materialDesign:Clock
-            Width="auto"
-            DisplayAutomation="CycleWithSeconds"
-            Is24Hours="True"
-            Style="{StaticResource MaterialDesignClockHorizontal}" 
-            />-->
-        <views:DataViewer>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" IsMainMenu="True">
+            <MenuItem Header="Menu" Command="{Binding NavigateCommand}"/>
+            <MenuItem Header="Statistics"/>
+        </Menu>
+        <views:DataViewer Grid.Row="1">
             <ContentControl Content="{Binding DataViewer}"/>
         </views:DataViewer>
 

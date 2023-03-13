@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TimeChecker.Model.WorkCalendar
+namespace TimeChecker.Model.Calendar
 {
     public static class CalendarHelper
     {

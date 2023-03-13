@@ -4,22 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TimeChecker.Model.WorkCalendar
+namespace TimeChecker.Model.Calendar
 {
-    public class WorkPeriodCalculator
+    public class ModelMonth
     {
         private List<DateTime> _workdays;
         private List<DateTime> _shortdays;
         private List<DateTime> _holidays;
 
-        public WorkPeriods Period;
+        private Months _month;
+
+        public Months Month => _month;
 
         public List<DateTime> Workdays => _workdays;
         public List<DateTime> Holidays => _holidays;
         public List<DateTime> Shortdays => _shortdays;
 
-        public WorkPeriodCalculator()
+        public ModelMonth(int monthNumber)
         {
+             Enum.TryParse(Enum.GetName(typeof(Months), monthNumber - 1), out _month); 
+
             _workdays = new List<DateTime>();
             _shortdays = new List<DateTime>();
             _holidays = new List<DateTime>();
