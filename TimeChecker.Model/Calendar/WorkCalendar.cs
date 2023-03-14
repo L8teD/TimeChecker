@@ -9,7 +9,7 @@ namespace TimeChecker.Model.Calendar
 {
     public class WorkCalendar
     {
-        private List<ModelMonth> months;
+        private List<WorkPeriod> workPeriods;
 
         public WorkCalendar()
         {
@@ -18,7 +18,8 @@ namespace TimeChecker.Model.Calendar
             JsonFileService service = new JsonFileService();
             JsonCalendar jsonCalendar = service.Open<JsonCalendar>(path);
 
-            months = ConvertFromJson(jsonCalendar);
+            workPeriods = GetWorkPeriods(ConvertFromJson(jsonCalendar));
+            var period = workPeriods[0].GetPeriod();
         }
 
         private List<ModelMonth> ConvertFromJson(JsonCalendar json)
@@ -36,15 +37,15 @@ namespace TimeChecker.Model.Calendar
             
         }
 
-        private void FillWorkDays(ModelMonth period, int month)
+        private void FillWorkDays(ModelMonth month, int monthNumber)
         {
             int year = 2023;
-            for (DateTime dt = new DateTime(year, month, 1); 
-                dt.Ticks < new DateTime(year, month, DateTime.DaysInMonth(2023, month)).Ticks; 
+            for (DateTime dt = new DateTime(year, monthNumber, 1); 
+                dt.Ticks <= new DateTime(year, monthNumber, DateTime.DaysInMonth(2023, monthNumber)).Ticks; 
                 dt = dt.AddDays(1))
             {
-                if (!(period.Holidays.Contains(dt) || period.Shortdays.Contains(dt)))
-                    period.Workdays.Add(dt);
+                if (!month.Days.Any(day => day.Day == dt.Day))
+                    month.AddDay(TypeOfDay.Work, dt);
             }
         }
 
@@ -57,7 +58,7 @@ namespace TimeChecker.Model.Calendar
                 int monthDay = 0;
                 int.TryParse(day.Replace('*', ' ').Replace('+',' '), out monthDay);
 
-                SetDayIntoWorkPeriod(isShort, jsonMonth.Month, monthDay, month);
+                SetDayIntoMonthModel(isShort, jsonMonth.Month, monthDay, month);
                 
             }
 
@@ -65,7 +66,7 @@ namespace TimeChecker.Model.Calendar
 
         }
 
-        private void SetDayIntoWorkPeriod(bool isShort, int monthNum, int day, ModelMonth month)
+        private void SetDayIntoMonthModel(bool isShort, int monthNum, int day, ModelMonth month)
         {
             if (isShort)
                 month.AddDay(TypeOfDay.Short, JsonDayToDateTime(monthNum, day));
@@ -79,9 +80,30 @@ namespace TimeChecker.Model.Calendar
             return new DateTime(year, month, day);
         }
 
-        private void GetWorkPeriods()
+        private List<WorkPeriod> GetWorkPeriods(List<ModelMonth> months)
         {
             List<WorkPeriod> periods = new List<WorkPeriod>();
+
+            for(int i = 0; i <= months.Count; i++)
+            {
+                try
+                {
+                    if (i == 0)
+                        periods.Add(new WorkPeriod(i, null, months[i]));
+                    else if (i == months.Count)
+                        periods.Add(new WorkPeriod(i, months[i - 1], null));
+                    else
+                        periods.Add(new WorkPeriod(i, months[i - 1], months[i]));
+
+                }
+                catch(Exception ex)
+                {
+
+                }
+
+            }
+
+            return periods;
         }
     }
 }

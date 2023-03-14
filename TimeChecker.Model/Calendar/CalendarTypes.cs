@@ -6,18 +6,6 @@ using System.Threading.Tasks;
 
 namespace TimeChecker.Model.Calendar
 {
-    public static class CalendarHelper
-    {
-        public static readonly List<DateTime> Holidays;
-
-        static CalendarHelper()
-        {
-            Holidays = new List<DateTime>();
-
-            Holidays.Add(new DateTime());
-        }
-    }
-
     public enum Months
     {
         January,
@@ -36,6 +24,7 @@ namespace TimeChecker.Model.Calendar
 
     public enum WorkPeriods
     {
+        Dec_Jan_Past,
         Jan_Feb,
         Feb_Mar,
         Mar_Apr,
@@ -47,7 +36,7 @@ namespace TimeChecker.Model.Calendar
         Sep_Oct,
         Oct_Nov,
         Nov_Dec,
-        Dec_Jan
+        Dec_Jan_Next
     }
 
     public enum TypeOfDay

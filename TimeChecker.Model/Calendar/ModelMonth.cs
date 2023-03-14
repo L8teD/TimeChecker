@@ -8,35 +8,22 @@ namespace TimeChecker.Model.Calendar
 {
     public class ModelMonth
     {
-        private List<DateTime> _workdays;
-        private List<DateTime> _shortdays;
-        private List<DateTime> _holidays;
-
+        private List<ModelDay> _days;
+        
         private Months _month;
 
         public Months Month => _month;
 
-        public List<DateTime> Workdays => _workdays;
-        public List<DateTime> Holidays => _holidays;
-        public List<DateTime> Shortdays => _shortdays;
+        public List<ModelDay> Days => _days;
 
         public ModelMonth(int monthNumber)
         {
              Enum.TryParse(Enum.GetName(typeof(Months), monthNumber - 1), out _month); 
 
-            _workdays = new List<DateTime>();
-            _shortdays = new List<DateTime>();
-            _holidays = new List<DateTime>();
+            _days = new List<ModelDay>();
         }
 
-        public void AddDay(TypeOfDay type, DateTime date) => SelectList(type).Add(date);
+        public void AddDay(TypeOfDay type, DateTime date) => _days.Add(new ModelDay(type, date.Day, date.Month));
         
-        private List<DateTime> SelectList(TypeOfDay type) => type switch
-        {
-            TypeOfDay.Work => _workdays,
-            TypeOfDay.Short => _shortdays,
-            TypeOfDay.Holiday => _holidays,
-            _ => _workdays
-        };
     }
 }
