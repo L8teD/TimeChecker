@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TimeChecker.Types;
 
 namespace TimeChecker.Model.Calendar
 {
@@ -22,7 +18,7 @@ namespace TimeChecker.Model.Calendar
         public List<ModelDay> GetPeriod()
         {
             List<ModelDay> result = new List<ModelDay>();
-            if(monthPast != null)
+            if (monthPast != null)
                 result.AddRange(monthPast?.Days.Where(day => day.Day > 19));
             if (monthNext != null)
                 result.AddRange(monthNext?.Days.Where(day => day.Day < 20));

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using TimeChecker.Model;
+using TimeChecker.WPF.ViewModels.Commands;
 
 namespace TimeChecker.WPF.ViewModels
 {
@@ -13,10 +10,11 @@ namespace TimeChecker.WPF.ViewModels
 
         public ICommand NavigateToMonth { get; }
 
-        public CalendarVM()
+        public CalendarVM(MainModel model)
         {
-            DataViewer = new DataViewerVM();
+            DataViewer = new DataViewerVM(model);
 
+            NavigateToMonth = new NavigateToMonthCommand(DataViewer.UpdateItems);
         }
 
         //private void 

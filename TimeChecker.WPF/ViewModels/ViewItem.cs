@@ -1,4 +1,5 @@
 ﻿using System;
+using TimeChecker.Types;
 
 namespace TimeChecker.WPF.ViewModels
 {
@@ -12,6 +13,17 @@ namespace TimeChecker.WPF.ViewModels
             {
                 _date = value;
                 OnPropertyChanged(nameof(Date));
+            }
+        }
+
+        private TypeOfDay _typeOfDay;
+        public TypeOfDay TypeOfDay
+        {
+            get => _typeOfDay;
+            set
+            {
+                _typeOfDay = value;
+                OnPropertyChanged(nameof(TypeOfDay));
             }
         }
 
@@ -38,9 +50,10 @@ namespace TimeChecker.WPF.ViewModels
             }
         }
 
-        public ViewItem(DateTime date)
+        public ViewItem(DateTime date, TypeOfDay type)
         {
             _date = date;
+            _typeOfDay = type;
             PickerIn = new TimePickerVM();
             PickerOut = new TimePickerVM();
         }

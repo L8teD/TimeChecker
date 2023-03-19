@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeChecker.WPF", "TimeChecker.WPF.csproj", "{6648A193-77E2-450B-85B0-3CE547D173B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeChecker.WPF", "TimeChecker.WPF.csproj", "{6648A193-77E2-450B-85B0-3CE547D173B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeChecker.Model", "..\TimeChecker.Model\TimeChecker.Model.csproj", "{DF87F0AE-E149-4A27-9714-F891A8FD6BEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeChecker.Model", "..\TimeChecker.Model\TimeChecker.Model.csproj", "{DF87F0AE-E149-4A27-9714-F891A8FD6BEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeChecker.Types", "..\TimeChecker.Types\TimeChecker.Types.csproj", "{0D4AC4B4-C0D2-49D1-953C-F5044E91A2B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DF87F0AE-E149-4A27-9714-F891A8FD6BEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF87F0AE-E149-4A27-9714-F891A8FD6BEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF87F0AE-E149-4A27-9714-F891A8FD6BEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D4AC4B4-C0D2-49D1-953C-F5044E91A2B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D4AC4B4-C0D2-49D1-953C-F5044E91A2B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D4AC4B4-C0D2-49D1-953C-F5044E91A2B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D4AC4B4-C0D2-49D1-953C-F5044E91A2B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

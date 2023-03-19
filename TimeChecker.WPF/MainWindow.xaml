@@ -22,9 +22,9 @@
             <MenuItem Header="Menu" Command="{Binding NavigateCommand}"/>
             <MenuItem Header="Statistics"/>
         </Menu>
-        <views:DataViewer Grid.Row="1">
-            <ContentControl Content="{Binding DataViewer}"/>
-        </views:DataViewer>
+        <views:Calendar Grid.Row="1">
+            <ContentControl Content="{Binding Calendar}"/>
+        </views:Calendar>
 
     </Grid>
 </Window>
