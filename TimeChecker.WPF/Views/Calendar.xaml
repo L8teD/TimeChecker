@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TimeChecker.WPF.Views"
-             xmlns:modelTypes="clr-namespace:TimeChecker.Model.Calendar;assembly=TimeChecker.Model"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:modelTypes="clr-namespace:TimeChecker.Types;assembly=TimeChecker.Types"
              xmlns:vm="clr-namespace:TimeChecker.WPF.ViewModels"
              d:DataContext="{d:DesignInstance Type=vm:CalendarVM, IsDesignTimeCreatable=False}"
              mc:Ignorable="d" >
@@ -13,22 +14,27 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0">
-            <MenuItem Header="Дек-Янв" Command="{Binding NavigateToMonth}" CommandParameter="{x:Static modelTypes:WorkPeriods.Dec_Jan_Past}"/>
-            <MenuItem Header="Янв-Фев" Command="{Binding NavigateToMonth}" CommandParameter="{x:Static modelTypes:WorkPeriods.Jan_Feb}"/>
-            <MenuItem Header="Фев-Мар" Command="{Binding NavigateToMonth}" CommandParameter="{x:Static modelTypes:WorkPeriods.Feb_Mar}"/>
-            <MenuItem Header="Мар-Апр" Command="{Binding NavigateToMonth}" CommandParameter="{x:Static modelTypes:WorkPeriods.Mar_Apr}"/>
-            <MenuItem Header="Апр-Май" Command="{Binding NavigateToMonth}" CommandParameter="{x:Static modelTypes:WorkPeriods.Apr_May}"/>
-            <MenuItem Header="Май-Июн" Command="{Binding NavigateToMonth}" CommandParameter="{x:Static modelTypes:WorkPeriods.May_Jun}"/>
-            <MenuItem Header="Июн-Июл" Command="{Binding NavigateToMonth}" CommandParameter="{x:Static modelTypes:WorkPeriods.Jun_Jul}"/>
-            <MenuItem Header="Июл-Авг" Command="{Binding NavigateToMonth}" CommandParameter="{x:Static modelTypes:WorkPeriods.Jul_Aug}"/>
-            <MenuItem Header="Авг-Сен" Command="{Binding NavigateToMonth}" CommandParameter="{x:Static modelTypes:WorkPeriods.Aug_Sep}"/>
-            <MenuItem Header="Сен-Окт" Command="{Binding NavigateToMonth}" CommandParameter="{x:Static modelTypes:WorkPeriods.Sep_Oct}"/>
-            <MenuItem Header="Окт-Ноя" Command="{Binding NavigateToMonth}" CommandParameter="{x:Static modelTypes:WorkPeriods.Oct_Nov}"/>
-            <MenuItem Header="Ноя-Дек" Command="{Binding NavigateToMonth}" CommandParameter="{x:Static modelTypes:WorkPeriods.Nov_Dec}"/>
-            <MenuItem Header="Дек-Янв" Command="{Binding NavigateToMonth}" CommandParameter="{x:Static modelTypes:WorkPeriods.Dec_Jan_Next}"/>
-        </Menu>
-        
+        <TabControl Grid.Row="0" x:Name="mainTab">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding NavigateToMonth}"
+                                           CommandParameter="{Binding ElementName=mainTab, Path=SelectedIndex}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <TabItem Header="Дек-Янв"/>
+            <TabItem Header="Янв-Фев"/>
+            <TabItem Header="Фев-Мар"/>
+            <TabItem Header="Мар-Апр"/>
+            <TabItem Header="Апр-Май"/>
+            <TabItem Header="Май-Июн"/>
+            <TabItem Header="Июн-Июл"/>
+            <TabItem Header="Июл-Авг"/>
+            <TabItem Header="Авг-Сен"/>
+            <TabItem Header="Сен-Окт"/>
+            <TabItem Header="Окт-Ноя"/>
+            <TabItem Header="Ноя-Дек"/>
+            <TabItem Header="Дек-Янв"/>
+        </TabControl>
         <local:DataViewer Grid.Row="1">
             <ContentControl Content="{Binding DataViewer}"/>
         </local:DataViewer>

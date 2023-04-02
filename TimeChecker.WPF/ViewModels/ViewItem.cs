@@ -16,6 +16,11 @@ namespace TimeChecker.WPF.ViewModels
             }
         }
 
+        public DayOfWeek DayOfWeek
+        {
+            get => _date.DayOfWeek;
+        }
+
         private TypeOfDay _typeOfDay;
         public TypeOfDay TypeOfDay
         {

@@ -9,5 +9,8 @@
     <DataTemplate DataType="{x:Type vm:TimePickerVM}">
         <v:TimePicker/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:CalendarVM}">
+        <v:Calendar/>
+    </DataTemplate>
 
 </ResourceDictionary>

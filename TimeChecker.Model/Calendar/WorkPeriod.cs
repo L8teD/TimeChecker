@@ -7,7 +7,6 @@ namespace TimeChecker.Model.Calendar
         private ModelMonth monthPast;
         private ModelMonth monthNext;
         public WorkPeriods Period { get; }
-
         public WorkPeriod(int period, ModelMonth monthPast, ModelMonth monthNext)
         {
             Period = (WorkPeriods)period;

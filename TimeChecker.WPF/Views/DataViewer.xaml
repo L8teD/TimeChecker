@@ -12,6 +12,7 @@
         <ListView ItemsSource="{Binding DataItems}">
             <ListView.View>
                 <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=DayOfWeek, Converter={StaticResource dayOfWeekToStringConverter}}"/>
                     <GridViewColumn DisplayMemberBinding="{viewhelp:CultureAwareBinding Path=Date, StringFormat=d}"
                                     Header="Дата" />
                     <GridViewColumn Header="Заход" Width="150">

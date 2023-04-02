@@ -39,4 +39,12 @@
         Short,
         Holiday
     }
+
+    public enum TypeOfWorkDay
+    {
+        Default,
+        Passed,
+        Donor,
+        Absensed
+    }
 }

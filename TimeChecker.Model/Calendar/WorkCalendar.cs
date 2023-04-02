@@ -11,7 +11,8 @@ namespace TimeChecker.Model.Calendar
     public class WorkCalendar
     {
         private List<WorkPeriod> workPeriods;
-        public List<WorkPeriod> WorkPeriods { get => workPeriods; }
+        public List<WorkPeriod> WorkPeriods => workPeriods;
+
 
         public WorkCalendar()
         {
@@ -21,13 +22,13 @@ namespace TimeChecker.Model.Calendar
             JsonCalendar jsonCalendar = service.Open<JsonCalendar>(path);
 
             workPeriods = GetWorkPeriods(ConvertFromJson(jsonCalendar));
-            var period = workPeriods[0].GetPeriod();
+
+
         }
 
         private List<ModelMonth> ConvertFromJson(JsonCalendar json)
         {
             List<ModelMonth> months = new List<ModelMonth>();
-
 
             foreach (JsonMonth jsonMonth in json.Months)
             {
@@ -61,11 +62,10 @@ namespace TimeChecker.Model.Calendar
                 int.TryParse(day.Replace('*', ' ').Replace('+',' '), out monthDay);
 
                 SetDayIntoMonthModel(isShort, jsonMonth.Month, monthDay, month);
-                
             }
 
             FillWorkDays(month, jsonMonth.Month);
-
+            month.SortByDate();
         }
 
         private void SetDayIntoMonthModel(bool isShort, int monthNum, int day, ModelMonth month)
